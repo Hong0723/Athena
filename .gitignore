@@ -1,0 +1,48 @@
+# =============== Unity 기본 ===============
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+MemoryCaptures/
+UserSettings/
+# =========================================
+
+# Visual Studio / VS Code
+.vscode/
+.idea/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+
+# =========================================
+# Firebase / Plugins / SDK (용량 절감)
+Assets/Firebase/**
+Assets/ExternalDependencyManager/**
+Assets/Plugins/Android/
+Assets/Plugins/iOS/
+Assets/StreamingAssets/google-services-desktop.json
+Assets/StreamingAssets/google-services-desktop.json.meta
+
+# =========================================
+# OS 캐시
+.DS_Store
+Thumbs.db
+
+# =========================================
+# Logs / 기타
+*.log
+*.bak
+*.tmp
+*.lock
+*.orig
