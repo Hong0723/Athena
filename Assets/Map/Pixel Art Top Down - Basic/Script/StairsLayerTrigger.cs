@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Cainos.PixelArtTopDown_Basic
 {
-    //when object enter or exit the trigger, put it to the assigned layer and sorting layers base on the direction
-    //used in the stairs objects for player to travel between layers
+    // Improved stairs trigger to handle all directions (N, S, W, E)
+    // and add slight tolerance for coordinate comparison
 
     public class StairsLayerTrigger : MonoBehaviour
     {
-        public Direction direction;                                 //direction of the stairs
+        public Direction direction;      // Direction of the stairs
         [Space]
         public string layerUpper;
         public string sortingLayerUpper;
@@ -17,35 +17,51 @@ namespace Cainos.PixelArtTopDown_Basic
         public string layerLower;
         public string sortingLayerLower;
 
+        private const float tolerance = 0.1f;   // <-- 좌표 판정 오차 허용값
+
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (direction == Direction.South && other.transform.position.y < transform.position.y) SetLayerAndSortingLayer(other.gameObject, layerUpper, sortingLayerUpper);
-            else
-            if (direction == Direction.West && other.transform.position.x < transform.position.x) SetLayerAndSortingLayer(other.gameObject, layerUpper, sortingLayerUpper);
-            else
-            if (direction == Direction.East && other.transform.position.x > transform.position.x) SetLayerAndSortingLayer(other.gameObject, layerUpper, sortingLayerUpper);
+            Vector2 pos = other.transform.position;
+            Vector2 triggerPos = transform.position;
 
+            if (direction == Direction.South && pos.y < triggerPos.y + tolerance)
+                SetLayerAndSortingLayer(other.gameObject, layerUpper, sortingLayerUpper);
+
+            else if (direction == Direction.North && pos.y > triggerPos.y - tolerance)
+                SetLayerAndSortingLayer(other.gameObject, layerUpper, sortingLayerUpper);
+
+            else if (direction == Direction.West && pos.x < triggerPos.x + tolerance)
+                SetLayerAndSortingLayer(other.gameObject, layerUpper, sortingLayerUpper);
+
+            else if (direction == Direction.East && pos.x > triggerPos.x - tolerance)
+                SetLayerAndSortingLayer(other.gameObject, layerUpper, sortingLayerUpper);
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (direction == Direction.South && other.transform.position.y < transform.position.y) SetLayerAndSortingLayer(other.gameObject, layerLower, sortingLayerLower);
-            else
-            if (direction == Direction.West && other.transform.position.x < transform.position.x) SetLayerAndSortingLayer(other.gameObject, layerLower, sortingLayerLower);
-            else
-            if (direction == Direction.East && other.transform.position.x > transform.position.x) SetLayerAndSortingLayer(other.gameObject, layerLower, sortingLayerLower);
+            Vector2 pos = other.transform.position;
+            Vector2 triggerPos = transform.position;
+
+            if (direction == Direction.South && pos.y < triggerPos.y + tolerance)
+                SetLayerAndSortingLayer(other.gameObject, layerLower, sortingLayerLower);
+
+            else if (direction == Direction.North && pos.y > triggerPos.y - tolerance)
+                SetLayerAndSortingLayer(other.gameObject, layerLower, sortingLayerLower);
+
+            else if (direction == Direction.West && pos.x < triggerPos.x + tolerance)
+                SetLayerAndSortingLayer(other.gameObject, layerLower, sortingLayerLower);
+
+            else if (direction == Direction.East && pos.x > triggerPos.x - tolerance)
+                SetLayerAndSortingLayer(other.gameObject, layerLower, sortingLayerLower);
         }
 
-        private void SetLayerAndSortingLayer( GameObject target, string layer, string sortingLayer )
+        private void SetLayerAndSortingLayer(GameObject target, string layer, string sortingLayer)
         {
             target.layer = LayerMask.NameToLayer(layer);
 
-            target.GetComponent<SpriteRenderer>().sortingLayerName = sortingLayer;
             SpriteRenderer[] srs = target.GetComponentsInChildren<SpriteRenderer>();
             foreach (SpriteRenderer sr in srs)
-            {
                 sr.sortingLayerName = sortingLayer;
-            }
         }
 
         public enum Direction
@@ -54,6 +70,6 @@ namespace Cainos.PixelArtTopDown_Basic
             South,
             West,
             East
-        }    
+        }
     }
 }
