@@ -4,10 +4,14 @@
 TimeManager:
   m_ObjectHideFlags: 0
   Fixed Timestep: 0.02
+<<<<<<< Updated upstream
 <<<<<<< HEAD
   Maximum Allowed Timestep: 0.33333334
 =======
   Maximum Allowed Timestep: 0.1
 >>>>>>> feature/ui
+=======
+  Maximum Allowed Timestep: 0.33333334
+>>>>>>> Stashed changes
   m_TimeScale: 1
   Maximum Particle Timestep: 0.03
