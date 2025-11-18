@@ -887,6 +887,50 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: TX Struct_0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 362
+        width: 92
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f8a6f1bb96915a40bbf8b32e2d13f69
+      internalID: 1226333117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Struct_1
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 133
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 394d801392a2ea443a65da3e61c8f2e3
+      internalID: -640826825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -931,6 +975,8 @@ TextureImporter:
       TX Struct Gate T1 T: 21300028
       TX Struct Gate T2 B: 21300018
       TX Struct Gate T2 T: 21300016
+      TX Struct_0: 1226333117
+      TX Struct_1: -640826825
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

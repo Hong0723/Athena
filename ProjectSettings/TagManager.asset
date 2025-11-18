@@ -26,9 +26,9 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - Layer 1
+  - Layer 2
+  - Layer 3
   - 
   - 
   - 
@@ -42,11 +42,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Tree
+  - name: layer 1
     uniqueID: 3785870243
     locked: 0
-  - name: Player
+  - name: layer 2
     uniqueID: 308934027
+    locked: 0
+  - name: layer 3
+    uniqueID: 4274451831
+    locked: 0
+  - name: Player
+    uniqueID: 3596583801
     locked: 0
   m_RenderingLayers:
   - Default
