@@ -20,7 +20,12 @@ public class ItemManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     [Header("Item Data")]
     public ItemData itemData;
 
-    private Canvas dragCanvas; // 드래그 중에 임시로 붙는 Canvas
+    //private Canvas dragCanvas; // 드래그 중에 임시로 붙는 Canvas
+    //public RectTransform rect;
+    public Transform dragLayer; // Inspector에 DragLayer 연결 (Root Canvas 하위)
+    private Transform originalParent;
+    private int originalSiblingIndex;
+    private CanvasGroup canvasGroup;
 
     void Start()
     {
@@ -34,7 +39,12 @@ public class ItemManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if (itemData != null)
         {
             img.sprite = itemData.itemIcon;
-        }      
+        }
+
+        // CanvasGroup 보장
+        canvasGroup = GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+            canvasGroup = gameObject.AddComponent<CanvasGroup>();
     }
 
   
@@ -120,7 +130,21 @@ public class ItemManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("마우스가 나감!");        
+        Debug.Log("마우스가 나감!");
+
+        // --- Null 체크 로그 추가 ---
+        Debug.Log($"activeButton == null ? {activeButton == null}");
+        Debug.Log($"DeleteButton == null ? {DeleteButton == null}");
+        Debug.Log($"ExplainItemToText.Instance == null ? {ExplainItemToText.Instance == null}");
+
+        // 만약Instance는 있고 내부 멤버가 null인지 확인하고 싶다면:
+        if (ExplainItemToText.Instance != null)
+            Debug.Log("ExplainItemToText Instance 존재함");
+        else
+            Debug.Log("ExplainItemToText Instance NULL!!!");
+        // ---------------------------------
+
+
         activeButton.SetActive(false);
         DeleteButton.SetActive(false);
 
@@ -133,9 +157,10 @@ public class ItemManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         cg.blocksRaycasts = enable;
     }   
 
+    
     public void OnBeginDrag(PointerEventData eventData)
     {
-        
+        /*
         //  드래그용 Canvas 생성 (임시)
         dragCanvas = gameObject.AddComponent<Canvas>();
         dragCanvas.overrideSorting = true;
@@ -144,10 +169,25 @@ public class ItemManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         // Raycaster도 추가해야 클릭 감지 유지됨
         if (gameObject.GetComponent<GraphicRaycaster>() == null)
             gameObject.AddComponent<GraphicRaycaster>();
+        */
+        if (dragLayer == null)
+            dragLayer = GameObject.Find("DragLayer").transform;
+        // 원래 부모와 인덱스 저장
+        //originalParent = transform.parent;
+        //originalSiblingIndex = transform.GetSiblingIndex();
 
+        // DragLayer로 이동 (worldPosition 유지)
+        transform.SetParent(dragLayer, true);
+
+        // 드래그 중엔 아이템이 Raycast를 막지 않도록
+        canvasGroup.blocksRaycasts = false;
+
+        // (선택) 아이템을 가장 마지막으로 (맨 위에) 보이게
+        transform.SetAsLastSibling();
     }
     public void OnEndDrag(PointerEventData eventData)
     {
+        /*
         // GraphicRaycaster도 제거 (원래 없던 경우만)
         var raycaster = GetComponent<GraphicRaycaster>();
         if (raycaster != null)
@@ -155,6 +195,14 @@ public class ItemManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         //  드래그 종료 후 임시 Canvas 제거
         if (dragCanvas != null)
-            Destroy(dragCanvas);        
+            Destroy(dragCanvas);
+        */
+        // 원래 부모 복귀
+        //transform.SetParent(originalParent, true);
+        //transform.SetSiblingIndex(originalSiblingIndex);
+
+        // Raycast 다시 활성화
+        canvasGroup.blocksRaycasts = true;
     }
+    
 }

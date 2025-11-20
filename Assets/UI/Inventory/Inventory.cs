@@ -72,10 +72,24 @@ public class Inventory : MonoBehaviour
             {
                 Debug.Log($" {slot.name} 슬롯 안에 아이템이 놓였습니다!");
                 RectTransform rect = gameobject.GetComponent<RectTransform>();
-                RectTransform slotRect = slot.GetComponent<RectTransform>(); // 추가
 
+                /*
+                RectTransform slotRect = slot.GetComponent<RectTransform>();
                 // 부모를 슬롯으로 변경
                 rect.SetParent(slotRect, worldPositionStays: false);
+                */
+                // slot(itembackground)의 자식 중 itemedge 찾기
+                
+                Transform edge = slot.transform.Find("itemedge");
+                if (edge == null)
+                {
+                    Debug.LogError($"{slot.name} 안에 itemedge가 없습니다! 확인해주세요.");
+                    return false;
+                }
+
+                // 부모를 itemedge로 변경
+                rect.SetParent(edge, worldPositionStays: true);
+
 
                 // 로컬 위치를 0으로 맞추면 슬롯 중앙에 정렬됨
                 rect.anchoredPosition = Vector2.zero;

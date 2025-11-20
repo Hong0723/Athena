@@ -10,8 +10,13 @@ public class ExplainItemToText : MonoBehaviour
     [TextArea] public string itemDescription; // 인스펙터에서 설명 입력 가능
     public TextMeshProUGUI descriptionTextUI; // 설명이 표시될 UI Text (예: 화면 하단 텍스트 박스)
 
-    private void Awake()
+   
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
+        Debug.Log("ExplainItemToText Start 실행");
+        Debug.Log($"Instance: {Instance}, descriptionTextUI: {descriptionTextUI}");
+
         // 이미 인스턴스가 존재한다면 중복 제거
         if (Instance != null && Instance != this)
         {
@@ -24,17 +29,8 @@ public class ExplainItemToText : MonoBehaviour
 
         // 씬 전환 시 파괴되지 않도록 (필요할 때만)
         DontDestroyOnLoad(gameObject);
-    }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        descriptionTextUI.gameObject.SetActive(false);//텍스트를 숨김상태로 시작
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        descriptionTextUI.gameObject.SetActive(false);//텍스트를 숨김상태로 시작
     }
 
     public void ShowDescription(string description)
