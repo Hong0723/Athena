@@ -32321,6 +32321,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventoryCanvus
       objectReference: {fileID: 0}
+    - target: {fileID: 6261677105188213029, guid: 4cd9cbbf2785c004aa60e4c9494dc903, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6636202582252323879, guid: 4cd9cbbf2785c004aa60e4c9494dc903, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6770592802292983412, guid: 4cd9cbbf2785c004aa60e4c9494dc903, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -32403,15 +32411,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7982028611761722766, guid: 4cd9cbbf2785c004aa60e4c9494dc903, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7982028611761722766, guid: 4cd9cbbf2785c004aa60e4c9494dc903, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7982028611761722766, guid: 4cd9cbbf2785c004aa60e4c9494dc903, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 8111307988943911698, guid: 4cd9cbbf2785c004aa60e4c9494dc903, type: 3}
       propertyPath: mainCam
@@ -32419,15 +32427,15 @@ PrefabInstance:
       objectReference: {fileID: 519420031}
     - target: {fileID: 8715168213020982945, guid: 4cd9cbbf2785c004aa60e4c9494dc903, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8715168213020982945, guid: 4cd9cbbf2785c004aa60e4c9494dc903, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 0.99999964
       objectReference: {fileID: 0}
     - target: {fileID: 8715168213020982945, guid: 4cd9cbbf2785c004aa60e4c9494dc903, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.22394001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
